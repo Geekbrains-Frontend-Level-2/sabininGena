@@ -1,0 +1,20 @@
+.header {
+    background-color: rgb(235, 94, 13);
+    color: burlywood;
+    font-size: 50px;
+}
+
+.shopList {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+}
+
+.product {
+    min-width: 200px;
+
+}
+img {
+    
+    height: 150px;
+    object-fit: contain;
+}

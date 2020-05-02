@@ -1,0 +1,21 @@
+{
+  "name": "sabininGena",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gesha50/sabininGena.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gesha50/sabininGena/issues"
+  },
+  "homepage": "https://github.com/gesha50/sabininGena#readme"
+}
