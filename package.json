@@ -1,21 +1,20 @@
 {
-  "name": "sabininGena",
+  "name": "sabiningena",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Семестровый проект",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gesha50/sabininGena.git"
+    "url": "git+https://github.com/Geekbrains-Frontend-Level-2/sabininGena.git"
   },
-  "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/gesha50/sabininGena/issues"
+    "url": "https://github.com/Geekbrains-Frontend-Level-2/sabininGena/issues"
   },
-  "homepage": "https://github.com/gesha50/sabininGena#readme"
+  "homepage": "https://github.com/Geekbrains-Frontend-Level-2/sabininGena#readme"
 }
