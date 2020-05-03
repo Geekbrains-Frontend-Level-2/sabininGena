@@ -6,8 +6,8 @@ const publicPath = './public'
   console.log(req.url)
 
   const body = req.url === `style.css` 
-    ? fs.readFileSync(`${publicPath})/style.css` ,'utf8')
-    : fs.readFileSync(`${publicPath})/index.html` ,'utf8')
+    ? fs.readFileSync(`${publicPath}/style.css` ,'utf8')
+    : fs.readFileSync(`${publicPath}/index.html` ,'utf8')
 
   res.end(body)
 })
