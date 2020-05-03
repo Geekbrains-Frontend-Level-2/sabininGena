@@ -1,4 +1,3 @@
-
     var basket = {
         name: '',
         price: 0,
@@ -24,7 +23,7 @@
             name: 'Коньки',
             src: 'img/small/1.jpg',
             price: 40000,
-        },
+        }
     ];
 
         function init(){
@@ -55,10 +54,10 @@
             
                 appDiv.appendChild(divProduct);
             }
-            var buttonBUY = document.querySelectorAll('.BUY');
+            /*var buttonBUY = document.querySelectorAll('.BUY');
                 for(var j = 0;j<buttonBUY.length;j++){
                 buttonBUY[j].addEventListener('click', buyProduct);
-                }
+                }*/
 
         }
 
