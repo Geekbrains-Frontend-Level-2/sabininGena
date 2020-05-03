@@ -4,7 +4,7 @@ const fs = require('fs')
 const server = http.createServer((req, res) => {
 const publicPath = './public'
   console.log(req.url)
-  //fs.readFileSync(`${publicPath}/main.js` ,'utf8')
+  fs.readFileSync(`${publicPath}/main.js` ,'utf8')
   const body = req.url === `/style.css` 
     ? fs.readFileSync(`${publicPath}/style.css` ,'utf8')
 
