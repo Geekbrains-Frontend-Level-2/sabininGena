@@ -6,22 +6,22 @@
     var allProduct = [
         {
             name: 'Нагрудник',
-            src: 'img/small/11.jpg',
+            src: 'img/11.jpg',
             price: 4500,
         },
         {
             name: 'Краги',
-            src: 'img/small/12.jpeg',
+            src: 'img/12.jpeg',
             price: 4000,
         },
         {
             name: 'Шлем',
-            src: 'img/small/13.jpg',
+            src: 'img/13.jpg',
             price: 5000,
         },
         {
             name: 'Коньки',
-            src: 'img/small/1.jpg',
+            src: 'img/1.jpg',
             price: 40000,
         }
     ];
