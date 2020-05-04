@@ -18,3 +18,14 @@ img {
     height: 150px;
     object-fit: contain;
 }
+
+@media all and (max-width: 576px) {
+    .shopList {
+        grid-template-columns: 1fr;
+    }
+}
+@media (min-width: 576px) and (max-width: 992px) {
+    .shopList {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
