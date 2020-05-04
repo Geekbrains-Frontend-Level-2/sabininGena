@@ -11,7 +11,7 @@
         },
         {
             name: 'Краги',
-            src: 'img/12.jpeg',
+            src: 'img/12.jpg',
             price: 4000,
         },
         {
