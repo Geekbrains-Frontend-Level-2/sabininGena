@@ -19,8 +19,8 @@ const server = http.createServer((req, res) =>{
             readFile();
         } else if (path.extname(urlFile) == '.jpg'){
             res.writeHead(200, {'Cotent-Type': 'image/jpeg'});
-            readFile();
-            //res.end(fs.readFileSync(`${pathFile}${urlFile}`));
+            //readFile();
+            res.end(fs.readFileSync(`${pathFile}${urlFile}`));
         } else {
             res.writeHead(200, {'Cotent-Type': 'text/html'});
             readFile();
