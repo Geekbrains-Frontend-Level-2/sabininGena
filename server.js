@@ -22,6 +22,6 @@ try {
     }
 } catch {
     res.writeHead(200, {'Cotent-Type': 'text/html'});
-    res.end(fs.readFileSync(`${pathFile}/index.html`, 'utf-8'));
+    res.end(fs.readFileSync(`${pathFile}${urlFile}`, 'utf-8'));
     }
 }).listen(process.env.PORT || 3000);
