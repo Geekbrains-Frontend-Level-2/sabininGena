@@ -15,10 +15,10 @@ try {
         res.end(fs.readFileSync(`${pathFile}${urlFile}`, 'utf-8'));
     } else if (path.extname(urlFile) == '.jpg'){
         res.writeHead(200, {'Cotent-Type': 'image/jpeg'});
-        res.end(fs.readFileSync(`${pathFile}/index.html`, 'utf-8'));
+        res.end(fs.readFileSync(`${pathFile}${urlFile}`));
     } else {
         res.writeHead(200, {'Cotent-Type': 'text/html'});
-        res.end(fs.readFileSync(`${pathFile}/index.html`, 'utf-8'));
+        res.end(fs.readFileSync(`${pathFile}${urlFile}`, 'utf-8'));
     }
 } catch {
     res.writeHead(200, {'Cotent-Type': 'text/html'});
