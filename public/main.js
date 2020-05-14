@@ -1,68 +1,130 @@
-    var basket = {
-        name: '',
-        price: 0,
-        allPrice: 0,
-    };
-    var allProduct = [
-        {
-            name: 'Нагрудник',
-            src: 'img/11.jpg',
-            price: 4500,
-        },
-        {
-            name: 'Краги',
-            src: 'img/12.jpg',
-            price: 4000,
-        },
-        {
-            name: 'Шлем',
-            src: 'img/13.jpg',
-            price: 5000,
-        },
-        {
-            name: 'Коньки',
-            src: 'img/1.jpg',
-            price: 40000,
+
+    class Renderer {
+        constructor (root) {
+          this._root = root
+          this.prepareTemplate()
         }
-    ];
-
-        function init(){
-            for(var i=0;i<allProduct.length;i++) {
-                var RUB = 'RUB';
-                var appDiv = document.querySelector(".shopList");
-                var divProduct = document.createElement("div");
-                divProduct.classList.add('product');
-
-                var productName = allProduct[i].name;
-                var h3 = document.createElement('h3');
-                h3.innerText = productName;
-                divProduct.appendChild(h3);
-
-                var img = document.createElement('img');
-                img.src = allProduct[i].src;
-                divProduct.appendChild(img);
-
-                var divPrice = allProduct[i].price;
-                var p = document.createElement('p');
-                p.innerText = divPrice + RUB;
-                divProduct.appendChild(p);
-                
-                var button = document.createElement('button');
-                button.innerText = 'Купить';
-                button.classList.add('BUY');
-                divProduct.appendChild(button);
+      
+        get root () {
+          return this._root
+        }
+      
+        get template () {
+          return this._template
+        }
+      
+        prepareTemplate () {
+          this._template = document.createElement('div')
+        }
+      
+        initTemplate () {
+          if (!this._template) {
+            return
+          }
+          return this._template.innerHTML = ''
+        }
+      
+        render (primaryRoot) {
             
-                appDiv.appendChild(divProduct);
-            }
-            /*var buttonBUY = document.querySelectorAll('.BUY');
-                for(var j = 0;j<buttonBUY.length;j++){
-                buttonBUY[j].addEventListener('click', buyProduct);
-                }*/
-
+          if (primaryRoot) {
+            this._root = primaryRoot
+          }
+      
+          this.initTemplate()
+      
+          const { root, template } = this
+          if (root) {
+            root.appendChild(template)
+          }
         }
+      }
 
+      class Item extends Renderer {
+        constructor (data = {}, root) {
+          super(root)
+          this._data = data
+        }
+        
+        onButtonClick () {
+            //console.log(this)
+          console.log(this._data)
+          const addItem = new Cart(this._data)
+        }
+      
+        initTemplate () {
+          if (!this._template) {
+            return
+          }
+      
+          const { title, price, src } = this._data
+          this._template.className = 'item'
+          this._template.innerHTML = `
+            <div class="item__img">
+              <img src=${src} />
+            </div>
+            <div class="item__meta">Товар: <span>${title}</span></div>
+            <div class="item__meta">Цена: <span>${price}</span></div>
+            <button>Купить</button>
+          `
+          
+          const cardButton = this.template.querySelector('button')
+          cardButton.addEventListener('click', this.onButtonClick.bind(this))
+        }
+      }
 
-    window.onload = init;
+      class ItemList extends Renderer {
+        constructor (root) {
+          super(root)
+          this.fetchData()
+        }
+      
+        fetchData () {
+          const items = [
+            { title: 'Коньки', price: 30000, src: 'img/1.jpg' },
+            { title: 'Нагрудник', price: 5000, src: 'img/11.jpg' },
+            { title: 'Краги', price: 3500, src: 'img/12.jpg' },
+            { title: 'Шлем', price: 2500, src: 'img/13.jpg' },
+          ]
+      
+          this._items = items.map(item => {
+            return new Item(item)
+          })
+        }
+      
+        get items () {
+          return this._items
+        }
+      
+        initTemplate () {
+          if (!this._template) {
+            return
+          }
+      
+          this._template.className = 'items-list'
+          this.items.forEach(item => item.render(this._template))
+        }
+      }
 
+      class Cart {
+          constructor(data = {}){
+              this._data = data
+              //console.log(data)
+              this.addToCart ()
+          }
+          addToCart () {
+              const { title, price, src } = this._data
+              //console.log(title)
+              var itemInCart = document.getElementsByClassName('cart')
+              console.log(itemInCart)
+              var tr = itemInCart.insertRow(0)
+              var td = tr.insertCell(0)
+              td.innerHTML = title
+              //не понимаю что делать дальше....
+
+          }
+      }
+
+      const List = new ItemList(document.querySelector('main'))
+      List.render()
 
         
