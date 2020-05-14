@@ -45,7 +45,7 @@
           this._data = data
         }
         
-        onButtonClick () {
+        addToCart () {
             //console.log(this)
           console.log(this._data)
           const addItem = new Cart(this._data)
@@ -68,7 +68,7 @@
           `
           
           const cardButton = this.template.querySelector('button')
-          cardButton.addEventListener('click', this.onButtonClick.bind(this))
+          cardButton.addEventListener('click', this.addToCart.bind(this))
         }
       }
 
@@ -111,16 +111,25 @@
               //console.log(data)
               this.addToCart ()
           }
+          removeOfCart() {
+            
+        }
           addToCart () {
-              const { title, price, src } = this._data
+              const { title, price } = this._data
               //console.log(title)
-              var itemInCart = document.getElementsByClassName('cart')
+              let itemInCart = document.getElementById('CartItem')
               console.log(itemInCart)
-              var tr = itemInCart.insertRow(0)
-              var td = tr.insertCell(0)
-              td.innerHTML = title
-              //не понимаю что делать дальше....
+              let cartDiv = document.createElement('div')
+              cartDiv.className = "CartItems"
+              cartDiv.innerHTML = title
+              itemInCart.appendChild(cartDiv)
 
+              let cartSpan = document.createElement('span')
+              cartSpan.className = "CartItems"
+              cartSpan.innerHTML = ' ' + price + "\u20bd"
+              cartDiv.appendChild(cartSpan)
+            
+              cartDiv.addEventListener('click', this.removeOfCart.bind(this))
           }
       }
 
