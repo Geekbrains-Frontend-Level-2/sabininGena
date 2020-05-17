@@ -1,6 +1,7 @@
 
     class Renderer {
         constructor (root) {
+          //console.log(root)
           this._root = root
           this.prepareTemplate()
         }
@@ -42,12 +43,13 @@
       class Item extends Renderer {
         constructor (data = {}, root) {
           super(root)
+          //console.log(root)
           this._data = data
         }
         
         addToCart () {
             //console.log(this)
-          console.log(this._data)
+          //console.log(this._data)
           const addItem = new Cart(this._data)
         }
       
@@ -111,14 +113,19 @@
               //console.log(data)
               this.addToCart ()
           }
-          removeOfCart() {
+          removeItem() {
+            // удаляем из this._list элемент с id
+            console.log(this._data)
             
-        }
+            //id.parentNode.removeChild(this._data);
+            document.removeItem(this._data)
+          } 
+
           addToCart () {
-              const { title, price } = this._data
+              let { title, price } = this._data
               //console.log(title)
               let itemInCart = document.getElementById('CartItem')
-              console.log(itemInCart)
+              //console.log(itemInCart)
               let cartDiv = document.createElement('div')
               cartDiv.className = "CartItems"
               cartDiv.innerHTML = title
@@ -129,8 +136,22 @@
               cartSpan.innerHTML = ' ' + price + "\u20bd"
               cartDiv.appendChild(cartSpan)
             
-              cartDiv.addEventListener('click', this.removeOfCart.bind(this))
+              cartDiv.addEventListener('click', this.removeItem.bind(this))
+              List.render()
           }
+      }
+        
+      //const CartObject = new Cart()
+        
+      class CartItem {
+        remove() {
+          CartObject.removeItem(this.id)
+        }
+        
+        render () {
+          this.template = html // тут хранится DOM
+          this.template.addEventListener('click', this.remove.bind(this))
+        }
       }
 
       const List = new ItemList(document.querySelector('main'))
