@@ -1,29 +1,21 @@
-const fs = require('fs');
-const http = require('http');
-const path = require('path');
+const http = require('http')
+const fs = require('fs')
 
-const server = http.createServer((req, res) =>{
-    const pathFile = './public';
-    const urlFile = req.url;
-    function readFile(){
-        res.end(fs.readFileSync(`${pathFile}${urlFile}`, 'utf-8'));
-    }
-    try {
-        if (path.extname(urlFile) == '.css'){
-           res.writeHead(200, {'Cotent-Type': 'text/css'});
-            readFile();
-        } else if (path.extname(urlFile) == '.js'){
-            res.writeHead(200, {'Cotent-Type': 'text/js'});
-            readFile();
-        } else if (path.extname(urlFile) == '.jpg'){
-            res.writeHead(200, {'Cotent-Type': 'image/jpeg'});
-            res.end(fs.readFileSync(`${pathFile}${urlFile}`));
-        } else {
-            res.writeHead(200, {'Cotent-Type': 'text/html'});
-            readFile();
-        }
-    } catch {
-        res.writeHead(200, {'Cotent-Type': 'text/html'});
-        res.end(fs.readFileSync(`${pathFile}/index.html`, 'utf-8'));
-    }
-}).listen(process.env.PORT || 3000);
+const server = http.createServer((req, res) => {
+  let body = null
+  const publicPath = './public'
+
+  try {
+    console.log(`${publicPath}${req.url}`)
+    body = fs.readFileSync(`${publicPath}${req.url}`)
+  } catch (e) {
+    body = fs.readFileSync(`${publicPath}/index.html`)
+  }
+
+  res.end(body)
+})
+
+const port = process.env.PORT || 3000
+
+server.listen(port)
+console.log('Server started on port: ', port)
