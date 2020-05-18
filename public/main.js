@@ -78,19 +78,21 @@
         constructor (root) {
           super(root)
           this.fetchData()
+            .then(this.render.bind(this))
         }
       
         fetchData () {
-          const items = [
-            { title: 'Коньки', price: 30000, src: 'img/1.jpg' },
-            { title: 'Нагрудник', price: 5000, src: 'img/11.jpg' },
-            { title: 'Краги', price: 3500, src: 'img/12.jpg' },
-            { title: 'Шлем', price: 2500, src: 'img/13.jpg' },
-          ]
-      
-          this._items = items.map(item => {
+          return fetch('http://localhost:5500/items.json')
+          .then(res => {
+            //console.log(res)
+            return res.json()
+          })
+          .then((res) => {
+        
+            this._items = res.data.map(item => {
             return new Item(item)
           })
+        })
         }
       
         get items () {
@@ -155,6 +157,6 @@
       }
 
       const List = new ItemList(document.querySelector('main'))
-      List.render()
+      
 
         
