@@ -41,16 +41,15 @@
       }
 
       class Item extends Renderer {
-        constructor (data = {}, root) {
+        constructor (data = {}, cart, root) {
           super(root)
+          this._cart = cart
           //console.log(root)
           this._data = data
         }
         
         addToCart () {
-            //console.log(this)
-          //console.log(this._data)
-          const addItem = new Cart(this._data)
+            this._cart.add(this._data)
         }
       
         initTemplate () {
@@ -66,17 +65,18 @@
             </div>
             <div class="item__meta">Товар: <span>${title}</span></div>
             <div class="item__meta">Цена: <span>${price}</span></div>
-            <button>Купить</button>
+            <button class='buy'>Купить</button>
           `
           
-          const cardButton = this.template.querySelector('button')
-          cardButton.addEventListener('click', this.addToCart.bind(this))
+          const btn = this.template.querySelector('.buy')
+          btn.addEventListener('click', this.addToCart.bind(this))
         }
       }
 
       class ItemList extends Renderer {
-        constructor (root) {
+        constructor (root, cart) {
           super(root)
+          this._cart = cart
           this.fetchData()
             .then(this.render.bind(this))
         }
@@ -90,7 +90,7 @@
           .then((res) => {
         
             this._items = res.data.map(item => {
-            return new Item(item)
+            return new Item(item, this._cart)
           })
         })
         }
@@ -109,54 +109,115 @@
         }
       }
 
-      class Cart {
-          constructor(data = {}){
-              this._data = data
-              //console.log(data)
-              this.addToCart ()
+      class Cart extends Renderer {
+          constructor(root){
+              super(root)
+              this._items = []
+              this.render()
           }
-          removeItem() {
-            // удаляем из this._list элемент с id
-            console.log(this._data)
-            
-            //id.parentNode.removeChild(this._data);
-            document.removeItem(this._data)
-          } 
 
-          addToCart () {
-              let { title, price } = this._data
-              //console.log(title)
-              let itemInCart = document.getElementById('CartItem')
-              //console.log(itemInCart)
-              let cartDiv = document.createElement('div')
-              cartDiv.className = "CartItems"
-              cartDiv.innerHTML = title
-              itemInCart.appendChild(cartDiv)
+          add (data) {
+            const ExItem = this._items.filter(item => item.id === data.id)[0]
+            if(ExItem){
+              return ExItem.inc()
+            }
+            return Promise.resolve(this._items.push(new CartItem(data)))
+              .then(() => {
+                this.render()
+              })
+          }
+          remove(id){
 
-              let cartSpan = document.createElement('span')
-              cartSpan.className = "CartItems"
-              cartSpan.innerHTML = ' ' + price + "\u20bd"
-              cartDiv.appendChild(cartSpan)
-            
-              cartDiv.addEventListener('click', this.removeItem.bind(this))
-              List.render()
+          }
+
+          toggle(){
+            if(!this._template){
+              return
+            }
+            this.template.classList.toggle('shown')
+          }
+
+          initTemplate(){
+            if(!this._template){
+              return
+            }
+            if (!this._template.className){
+              this._template.className = 'cart__list'
+              const logo = document.querySelector('.cartLogo')
+              logo.addEventListener('click', this.toggle.bind(this))
+            }
+
+            if (this._items.length) {
+              this._template.innerHTML = ''
+              this._items.forEach(item => item.render(this.template))
+            } else {
+              this._template.innerHTML = `
+              <div class='cart__empty'> 
+              Корзина пустая :(
+              </div>`
+            }
           }
       }
         
-      //const CartObject = new Cart()
         
-      class CartItem {
-        remove() {
-          CartObject.removeItem(this.id)
+      class CartItem extends Renderer {
+        constructor(data){
+          super()
+          this._data = data
+          this._counter = 1
+          this.render()
+        }
+
+        get id (){
+          return this._data.id
+        }
+
+        get totalPrice () {
+          return this._data.price * this._counter
+        }
+
+        inc(){
+          return Promise.resolve(this._counter++)
+            .then(()=>{
+              this.render()
+            })
+        }
+
+        dec(){
+          if(this._counter == 1){
+            this.del
+          } else{
+            return Promise.resolve(this._counter--)
+              .then(()=>{
+                this.render()
+              })
+          }          
+        }
+
+        del() {
+            
         }
         
-        render () {
-          this.template = html // тут хранится DOM
-          this.template.addEventListener('click', this.remove.bind(this))
+        initTemplate () {
+          if(!this._template){
+            return
+          }
+          
+          this._template.className = 'cart__items'
+          this._template.innerHTML = `
+            <span class='cart__item'>
+            ${this._data.title} x ${this._counter} = ${this.totalPrice}            
+            </span>
+            <span class='btnDelete'>x</span>
+          `
+          const btnDel = document.querySelector('.btnDelete')
+          //не понял почему не работает
+          //btnDel.addEventListener('click', this.dec.bind(this))
         }
       }
+      const CartObject = new Cart(document.querySelector('.cart'))
+      const List = new ItemList(document.querySelector('main'), CartObject)
 
-      const List = new ItemList(document.querySelector('main'))
       
 
         

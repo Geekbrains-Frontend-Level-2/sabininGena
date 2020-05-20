@@ -18,8 +18,15 @@
     color: black;
 }
 
-main {
-    margin-right: 170px;
+.cart__list {
+    background-color: #fff;
+    font-size: 15px;
+    color: blue;
+    display: none;
+}
+
+.cart__list.shown {
+    display: block;
 }
 
 .items-list {
@@ -41,6 +48,14 @@ img {
 
 button {
     float: right;
+}
+
+.btnDelete {
+    color: #fff;
+    background-color: red;
+}
+.btnDelete:hover {
+    cursor: pointer;
 }
 
 
