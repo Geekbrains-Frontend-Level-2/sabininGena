@@ -120,6 +120,9 @@
             const ExItem = this._items.filter(item => item.id === data.id)[0]
             if(ExItem){
               return ExItem.inc()
+                .then(()=>{
+                  this.totalTemplate()
+                })
             }
             return Promise.resolve(this._items.push(new CartItem(data)))
               .then(() => {
@@ -130,7 +133,15 @@
 
           }
 
-          toggle(){
+          getTotalPrice (){
+            this._items.reduce((cost, item) => {
+              //console.log(item.totalPrice)
+              //почему то не работает эта функция....
+              return cost + item.totalPrice
+            }, 0)
+          }
+
+          toggle(){ 
             if(!this._template){
               return
             }
@@ -150,12 +161,25 @@
             if (this._items.length) {
               this._template.innerHTML = ''
               this._items.forEach(item => item.render(this.template))
+              this.totalTemplate()
+
             } else {
               this._template.innerHTML = `
               <div class='cart__empty'> 
               Корзина пустая :(
               </div>`
             }
+          }
+
+          totalTemplate (){
+            let sumContainer = document.querySelector('.cartTotal')
+            if (!sumContainer){
+              sumContainer = document.createElement('div')
+              sumContainer.className = 'cartTotal'
+            }
+            sumContainer.innerHTML = this.getTotalPrice()
+            //console.log(getTotalPrice())
+            this._template.appendChild(sumContainer)
           }
       }
         
