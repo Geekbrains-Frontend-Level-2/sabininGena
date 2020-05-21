@@ -242,6 +242,23 @@
       const CartObject = new Cart(document.querySelector('.cart'))
       const List = new ItemList(document.querySelector('main'), CartObject)
 
+
+      //const inputName = 'kkjjoo6'
+      //const re = /[a-z]/i
+      //const result = inputName.test(re)
+      //console.log(result)
+
+      const str = 'abcQ';
+      var regexp = /^([a-z]+)/i;
+      console.log(regexp.test(str));
+
+      const str2 = '+7(917)543-3952';
+      var regexp2 = /^[0-9\+\(\)\-]+/;
+      ///^[0-9\+][0-9][0-9\(][0-9]{3,4}[0-9\)]([0-9\-]+)/;
+      ///^[0-9\+\(\)\-]+/
+      
+      console.log(regexp2.test(str2));
+      
       
 
         

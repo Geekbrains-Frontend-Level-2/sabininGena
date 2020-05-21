@@ -58,6 +58,27 @@ button {
     cursor: pointer;
 }
 
+form {
+    margin-top: 50px;
+    width: 200px;
+}
+
+input{
+    display: block;
+    margin: 10px 0;
+}
+
+.submit,
+.reset{
+    float: left;
+}
+
+.inputProblem{
+    color: red;
+    font-size: 10px;
+    display: none;
+}
+
 
 @media all and (max-width: 576px) {
     .items-list {
