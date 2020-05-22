@@ -242,24 +242,25 @@
       const List = new ItemList(document.querySelector('main'), CartObject)
 
 
-      //const str = 'abcQ'
-      var regexp = /^([a-z]+)/i
+      
+      
+      
+      const regexp = /^([a-z]+)/i
       const inputName = document.getElementById('inputName')
+      //const inputNameValue = document.getElementById('inputName').value
+
       inputName.addEventListener('change', () => {
-        console.log(regexp.test(inputName))
+        console.log(regexp.test(document.getElementById('inputName').value))
       })
 
-      const str2 = '+7(917)543-3952'
-      var regexp2 = /^[0-9\+\(\)\-]+/
+      const regexp2 = /^[0-9\+\(\)\-]+/
       const inputTel = document.getElementById('inputTelefone')
+      //const inputTelValue = document.getElementById('inputTelefone').value
+
       inputTel.addEventListener('change', () => {
-        console.log(regexp.test(inputTel))
+        console.log(regexp2.test(document.getElementById('inputTelefone').value))
       })
-      
-      ///^[0-9\+][0-9][0-9\(][0-9]{3,4}[0-9\)]([0-9\-]+)/;
-      ///^[0-9\+\(\)\-]+/
-      
-      //console.log(regexp2.test(str2))
+    
       
       
 
