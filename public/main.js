@@ -134,11 +134,10 @@
           }
 
           getTotalPrice (){
-            this._items.reduce((cost, item) => {
-              //console.log(item.totalPrice)
-              //почему то не работает эта функция....
+            const result = this._items.reduce((cost, item) => {
               return cost + item.totalPrice
             }, 0)
+            return result
           }
 
           toggle(){ 
@@ -208,7 +207,7 @@
         }
 
         dec(){
-          if(this._counter == 1){
+          if(this._counter = 1){
             this.del
           } else{
             return Promise.resolve(this._counter--)
@@ -243,21 +242,24 @@
       const List = new ItemList(document.querySelector('main'), CartObject)
 
 
-      //const inputName = 'kkjjoo6'
-      //const re = /[a-z]/i
-      //const result = inputName.test(re)
-      //console.log(result)
+      //const str = 'abcQ'
+      var regexp = /^([a-z]+)/i
+      const inputName = document.getElementById('inputName')
+      inputName.addEventListener('change', () => {
+        console.log(regexp.test(inputName))
+      })
 
-      const str = 'abcQ';
-      var regexp = /^([a-z]+)/i;
-      console.log(regexp.test(str));
-
-      const str2 = '+7(917)543-3952';
-      var regexp2 = /^[0-9\+\(\)\-]+/;
+      const str2 = '+7(917)543-3952'
+      var regexp2 = /^[0-9\+\(\)\-]+/
+      const inputTel = document.getElementById('inputTelefone')
+      inputTel.addEventListener('change', () => {
+        console.log(regexp.test(inputTel))
+      })
+      
       ///^[0-9\+][0-9][0-9\(][0-9]{3,4}[0-9\)]([0-9\-]+)/;
       ///^[0-9\+\(\)\-]+/
       
-      console.log(regexp2.test(str2));
+      //console.log(regexp2.test(str2))
       
       
 
