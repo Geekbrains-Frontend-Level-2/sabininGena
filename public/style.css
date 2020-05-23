@@ -53,6 +53,10 @@ button {
 .btnDelete {
     color: #fff;
     background-color: red;
+    width: 20px;
+    display: inline-block;
+    text-align: center;
+    font-size: large;
 }
 .btnDelete:hover {
     cursor: pointer;
@@ -70,13 +74,16 @@ input{
 
 .submit,
 .reset{
-    float: left;
+    display: inline-block;
 }
 
-.inputProblem{
+.inpP{
     color: red;
     font-size: 10px;
-    display: none;
+    display: block;
+}
+.inputProblem.shown {
+    
 }
 
 
