@@ -207,14 +207,11 @@
         }
 
         dec(){
-          if(this._counter = 1){
-            this.del()
-          } else{
+          //console.log(this._counter)
             return Promise.resolve(this._counter--)
               .then(()=>{
                 this.render()
               })
-          }          
         }
 
         del() {
@@ -233,9 +230,9 @@
             </span>
             <div class='btnDelete btnDelete_${this._data.id}'>x</div>
           `
-          const btnDel = document.querySelector('.btnDelete_' + this._data.id)
+          //const btnDel = document.querySelector('.btnDelete_' + this._data.id)
           
-          //btnDel.addEventListener('click', this.dec.bind(this))
+          this._template.addEventListener('click', this.dec.bind(this))
         }
       }
       const CartObject = new Cart(document.querySelector('.cart'))
@@ -275,7 +272,7 @@
         }
       const i2 =  {
           id: 2,
-          reg: /^((\+7)|8)[\(]?([0-9]{3,4})[\)]?([0-9]{3})[\-]?([0-9]{4})/,
+          reg: /^((\+7)|8)[\(]\1?([0-9]{3,4})[\)]\1?([0-9]{3})[\-]?([0-9]{4})/,
           root: document.getElementById('inputTelefone')
         }
 
