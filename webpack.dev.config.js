@@ -8,6 +8,6 @@ module.exports = merge(base, {
     devServer: {
         contentBase: './public',
         host: 'localhost',
-        port: 5555,
+        port: 8088,
     }
 })

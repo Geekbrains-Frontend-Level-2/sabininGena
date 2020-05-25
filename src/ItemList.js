@@ -12,7 +12,7 @@ export default class ItemList extends Renderer {
         }
       
         fetchData () {
-          return fetch('http://localhost:5500/public/dataBase/items.json')
+          return fetch('/dataBase/items.json')
           .then(res => {
             //console.log(res)
             return res.json()
