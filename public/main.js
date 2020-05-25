@@ -1,13 +1,17 @@
 
     class Renderer {
-        constructor (root) {
-          //console.log(root)
+        constructor (root, cart) {          
+          this._cart = cart
           this._root = root
           this.prepareTemplate()
         }
       
         get root () {
           return this._root
+        }
+
+        get cart () {
+          return this._cart
         }
       
         get template () {
@@ -42,9 +46,9 @@
 
       class Item extends Renderer {
         constructor (data = {}, cart, root) {
-          super(root)
-          this._cart = cart
-          //console.log(root)
+          super(root, cart)
+          //this._cart = cart
+
           this._data = data
         }
         
@@ -75,8 +79,9 @@
 
       class ItemList extends Renderer {
         constructor (root, cart) {
-          super(root)
-          this._cart = cart
+          super(root, cart)
+          
+          //this._cart = cart
           this.fetchData()
             .then(this.render.bind(this))
         }
@@ -188,7 +193,7 @@
           super()
           this._data = data
           this._counter = 1
-          this.render()
+          this.render()          
         }
 
         get id (){
@@ -232,7 +237,7 @@
           `
           //const btnDel = document.querySelector('.btnDelete_' + this._data.id)
           
-          this._template.addEventListener('click', this.dec.bind(this))
+          //this._template.addEventListener('click', this._cart.remove())
         }
       }
       const CartObject = new Cart(document.querySelector('.cart'))
