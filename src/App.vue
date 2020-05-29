@@ -10,11 +10,12 @@
     <main>
       <div>
       <h1>Список товаров</h1>
+      
       </div>
        <Item
-        v-for="(item, index) in items"
-        :key="index"
-         :title="item.title" :price="item.price" :src="item.src"
+        v-for="id in getItemsOnPage"
+        :key="id"
+         :id="id"
         />
     </main>
     <form action="form">
@@ -33,22 +34,29 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex'
 import Item from './Item.vue'
 
 export default {
     data() {
-        return {
-            items: [
-      { "id": 1, "title": "Коньки", "price": 30000, "src": "img/1.jpg" },
-      { "id": 2, "title": "Нагрудник", "price": 5000, "src": "img/11.jpg" },
-      { "id": 3, "title": "Краги", "price": 3500, "src": "img/12.jpg" },
-      { "id": 4, "title": "Шлем", "price": 2500, "src": "img/13.jpg" }
-    ]
-        }
+        return {}
     },
 
     components: {
         Item,
+    },
+    methods: {
+       ...mapActions('goods', [
+           'requestData'
+       ])
+    },   
+    computed: {
+        ...mapGetters('goods', [
+            'getItemsOnPage'
+        ])
+    },
+    mounted() {
+        this.requestData()
     }    
 }
 </script>

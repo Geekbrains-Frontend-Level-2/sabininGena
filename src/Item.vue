@@ -1,22 +1,48 @@
 <template>
-  <div :class="[$style.item]">
+  <div :class="[$style.item]" @click="updateAmount(id)">
 
             <div :class="[$style.item__img]">
             <img :src="src" />
             </div>
             <div :class="[$style.item__meta]">Товар: <span>{{ title }}</span></div>
             <div :class="[$style.item__meta]">Цена: <span>{{ price }}</span></div>
-            <!--<button class='buy'>Купить</button>-->
+            <div :class="[$style.item__meta]">Кол-во: <span>{{ amount }}</span></div>
+            <!--<button class='buy' @click="add">Купить</button>-->
 
   </div>
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex'
 export default {
     props: {
-        title: String,
-        price: Number,
-        src: String
+        id: Number,
+    },
+    methods: {
+        // add(){},
+        ...mapActions('goods', [
+            'updateAmount'
+        ])
+    },
+    computed: {
+        ...mapGetters('goods', [
+            'getData'
+        ]),
+        data () {
+            return this.getData[this.id]
+        },
+        title(){
+            return this.data.title
+        },
+        price(){
+           return this.data.price
+        },
+        src(){
+           return this.data.src
+        },
+        amount(){
+           return this.data.amount || 0
+        },
     }
 }
 </script>

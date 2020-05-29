@@ -23,11 +23,13 @@ const InpTel = new Input(i2.id, i2.reg, i2.root)*/
 
 import Vue from 'vue'
 import App from './App.vue'
+import store from './store'
 
 new Vue({
   el: 'main',
   template: '<App />',
   components: {
     App
-  }
+  },
+  store
 })
