@@ -20,12 +20,12 @@ const actions = {
     updateAmount({commit}, id){
         commit('updateAmount', id)
     },
-    /*addToCart({commit}, id){
+    addToCart({commit}, id){
         commit('add')
     },
-    removeFromCart(/*'remove'){
+    removeFromCart(){
 
-    }*/
+    }
 }
 
 const mutations = {
