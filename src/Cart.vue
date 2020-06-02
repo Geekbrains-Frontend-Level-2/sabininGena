@@ -1,4 +1,5 @@
 <template>
+
 <div>
   <div :class="[$style.cart]">
     <span :class="[$style.cartLogo]">Корзина</span> 

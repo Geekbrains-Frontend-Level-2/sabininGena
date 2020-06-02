@@ -20,12 +20,12 @@ const actions = {
     updateAmount({commit}, id){
         commit('updateAmount', id)
     },
-    addToCart({commit}, id){
-        commit('add')
+    /*addToCart({commit}, id){
+        commit('add', id)
     },
     removeFromCart(){
 
-    }
+    }*/
 }
 
 const mutations = {
@@ -39,7 +39,10 @@ const mutations = {
         }
         state.data[id].amount++
         state.data[id] = Object.assign({}, state.data[id])
-    }
+    },
+    /*add(){
+        
+    },*/
 }
 
 export default {
