@@ -2,19 +2,19 @@
   <div>
 
       <header :class="[$style.header]">
-    <span>IceHockey shop!</span> 
-    <Cart/>
+    <a @click.prevent="onMainLinkClick">IceHockey shop!</a> 
+    <a  @click.prevent="onCartLinkClick" ><CartLogo/></a>
   </header>
     <main>
       <div>
-      <h1>Список товаров</h1>
+      
       
       </div>
-       <Item
-        v-for="id in getItemsOnPage"
-        :key="id"
-         :id="id"
-        />
+      <div v-if="page === 'main'">
+       <ListItem />
+      </div>
+      <Cart v-else-if="page === 'cart'"/>
+
     </main>
     <form action="form">
       <input type="text" placeholder="Ваше имя: " id="inputName">
@@ -33,31 +33,43 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
-import Item from './Item.vue'
+//import Item from './Item.vue'
 import Cart from './Cart.vue'
+import CartLogo from './CartLogo.vue'
+import ListItem from './ListItem.vue'
 
 export default {
     data() {
-        return {}
+        return {
+            page: 'main',
+        }
     },
 
     components: {
-        Item,
+        ListItem,
+        //Item,
+        CartLogo,
         Cart,
     },
     methods: {
-       ...mapActions('goods', [
+       /*...mapActions('goods', [
            'requestData'
-       ])
+       ]),*/
+       onCartLinkClick(){
+           this.page = 'cart'
+       },
+       onMainLinkClick(){
+           this.page = 'main'
+       }
     },   
-    computed: {
+    /*computed: {
         ...mapGetters('goods', [
             'getItemsOnPage'
         ])
     },
     mounted() {
         this.requestData()
-    }    
+    }    */
 }
 </script>
 

@@ -6,8 +6,8 @@
             </div>
             <div :class="[$style.item__meta]">Товар: <span>{{ title }}</span></div>
             <div :class="[$style.item__meta]">Цена: <span>{{ price }}</span></div>
-            <div :class="[$style.item__meta]">Кол-во: <span>{{ amount }}</span></div>
-            <a  :class="[$style.buy]" @click="updateAmount(id)">Купить</a>
+            <!--<div :class="[$style.item__meta]" @click="updateAmount(id)">Кол-во: <span>{{ amount }}</span></div>-->
+            <a  :class="[$style.buy]" @click="addToCart(id)" >Купить</a>
 
   </div>
 </template>
@@ -18,10 +18,10 @@ export default {
     props: {
         id: Number,
     },
-    methods: {
-        //add
+    methods: {       
         ...mapActions('goods', [
-            'updateAmount'
+            'updateAmount',
+            'addToCart',
         ])
     },
     computed: {

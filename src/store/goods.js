@@ -2,11 +2,14 @@ const state = {
     data: {},
     itemsOnPage: [],
     itemsInCart: [],
+    counter: 0,
 }
 
 const getters = {
     getData: state => state.data, 
-    getItemsOnPage: state => state.itemsOnPage
+    getItemsOnPage: state => state.itemsOnPage,
+    getCounter: state => state.counter,
+    getItemsInCart: state => state.itemsInCart,
 }
 
 const actions = {
@@ -20,12 +23,12 @@ const actions = {
     updateAmount({commit}, id){
         commit('updateAmount', id)
     },
-    /*addToCart({commit}, id){
-        commit('add', id)
+    addToCart({commit}, id){
+        commit('addToCart', id)
     },
-    removeFromCart(){
+    removeFromCart({commit}, id){
 
-    }*/
+    },
 }
 
 const mutations = {
@@ -40,9 +43,22 @@ const mutations = {
         state.data[id].amount++
         state.data[id] = Object.assign({}, state.data[id])
     },
-    /*add(){
+    addToCart(state, id){
+        if(state.itemsInCart.indexOf(id) === -1){
+            state.itemsInCart.push(id)
+            state.counter++
+            console.log(state.data[id].price)
+            //state.itemsInCart = Object.keys(state.data[id])
+        }
+
         
-    },*/
+        
+        //state.itemsInCart[id] = Object.assign({}, state.itemsInCart[id])
+
+        console.log(state.itemsInCart.length)
+        
+        
+    },
 }
 
 export default {

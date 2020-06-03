@@ -18,6 +18,20 @@ module.exports = {
       //   test: /\.js$/, // scss
       //   use: ['babel-loader']
       // },
+      
+      {
+        test: /\.scss$/, // scss
+        use: [
+          'vue-style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+            }
+          },
+          'sass-loader'
+        ]
+      },
       {
         test: /\.css$/, // scss
         use: [
@@ -33,7 +47,14 @@ module.exports = {
       {
         test: /\.vue$/,
         loader: 'vue-loader'
-      } 
+      },
+      {
+        test: /\.(png|svg|jpg|gif)$/,
+        use: [
+          'file-loader',
+        ],
+      },
+       
     ]
   },
   plugins: [

@@ -24,6 +24,8 @@ const InpTel = new Input(i2.id, i2.reg, i2.root)*/
 import Vue from 'vue'
 import App from './App.vue'
 import store from './store'
+import main from './scss/main.scss'
+
 
 new Vue({
   el: 'main',
