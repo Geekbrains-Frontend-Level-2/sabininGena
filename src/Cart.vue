@@ -6,6 +6,7 @@
         :key="id"
          :id="id"
         />
+        <div :class="[$style.totalPrice]">{{ getTotalPrice }}</div>
   </div>
 </template>
 
@@ -21,14 +22,18 @@ export default {
     },
     computed: {
         ...mapGetters('goods', [
-            'getItemsInCart'
+            'getItemsInCart',
+            'getTotalPrice',
         ])
     },
 }
 </script>
 
 <style module>
-
+.totalPrice{
+  margin: auto;
+  text-align: center;
+}
 
 
 </style>

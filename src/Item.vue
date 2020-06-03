@@ -2,7 +2,7 @@
   <div :class="[$style.item]">
 
             <div :class="[$style.item__img]">
-            <img :src="src" />
+            <img :class="[$style.itemImg]" :src="src" />
             </div>
             <div :class="[$style.item__meta]">Товар: <span>{{ title }}</span></div>
             <div :class="[$style.item__meta]">Цена: <span>{{ price }}</span></div>
@@ -20,7 +20,6 @@ export default {
     },
     methods: {       
         ...mapActions('goods', [
-            'updateAmount',
             'addToCart',
         ])
     },
@@ -68,7 +67,7 @@ export default {
     text-align: left;
     margin-left: 30px;
 }
-img {
+.itemImg {
     object-fit: fill;
     height: 200px;
     width: 100%;

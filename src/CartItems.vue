@@ -1,24 +1,26 @@
 <template>
 <div>
+    <div>
    <div :class="[$style.cartItem]">
 
             <div :class="[$style.item__img]">
-            <img :src="src" />
+            <img :class="[$style.cartImg]" :src="src" />
             </div>
             <div :class="[$style.item__meta]">Товар: <span>{{ title }}</span></div>
             <div :class="[$style.item__meta]">Цена: <span>{{ price }}</span></div>
-            <!--<div :class="[$style.item__meta]" @click="updateAmount(id)">Кол-во: <span>{{ amount }}</span></div>-->
 
   </div>
   <div :class="[$style.cartItem]">
-      <span :class="[$style.plus]">+</span>
-      <span :class="[$style.counter]"></span>
-      <span :class="[$style.minus]">-</span>
+      <!--<img src="/img/minus.png" alt="">-->
+      <span :class="[$style.minus]" @click="removeFromCart(id)">-</span>
+      <span :class="[$style.counter]">{{ amount }}</span>
+      <span :class="[$style.plus]" @click="updateAmount(id)">+</span>
   </div>
   
 
   <div :class="[$style.cartItem]">
-      <span :class="[$style.sumItem]"></span>
+      <span :class="[$style.sumItem]">{{ sumItem }}</span>
+      </div>
       </div>
   </div>
 </template>
@@ -32,9 +34,16 @@ export default {
     props: {
         id: Number,
     },
+    methods: {
+        ...mapActions('goods', [
+            'updateAmount',
+            'removeFromCart'
+        ])
+    },
     computed: {
         ...mapGetters('goods', [
-            'getData'
+            'getData',
+            'getSumItem',
         ]),
         data() {
             return this.getData[this.id]
@@ -51,6 +60,10 @@ export default {
         amount(){
            return this.data.amount || 0
         },
+        sumItem(){
+            return this.data.sumItem || 0
+        }
+
     }
 }
 </script>
@@ -70,13 +83,14 @@ export default {
     height: 50px;
 }
 .plus{
-    float: left;
+    float: right;
 }
 .minus{
-    float: right;
+    float: left;
 }
 .plus,
 .minus {
+    cursor: pointer;
     text-align: center;
     font-size: 50px;
     display: inline-block;
@@ -97,9 +111,7 @@ export default {
     text-align: left;
     margin-left: 30px;
 }
-img {
-    object-fit: fill;
-    height: 200px;
-    width: 100%;
+.cartImg {
+    width: 50%;
 }
 </style>
