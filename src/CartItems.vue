@@ -32,7 +32,7 @@ export default {
         return {}
     },
     props: {
-        id: Number,
+        id: String,
     },
     methods: {
         ...mapActions('goods', [

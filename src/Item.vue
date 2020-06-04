@@ -16,7 +16,7 @@
 import { mapGetters, mapActions } from 'vuex'
 export default {
     props: {
-        id: Number,
+        id: String,
     },
     methods: {       
         ...mapActions('goods', [
