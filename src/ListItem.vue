@@ -7,6 +7,11 @@
          :id="id"
         />
 
+    <div>
+        <input type="text" placeholder="title" v-model="title"> <br>
+        <input type="text" placeholder="price" v-model="price"><br>
+        <button @click="onClick">add to items</button>
+    </div>
   </div>
 </template>
 
@@ -15,15 +20,23 @@ import { mapGetters, mapActions } from 'vuex'
 import Item from './Item.vue'
 export default {
     data() {
-        return {}
+        return {
+            title: '',
+            price: '',
+        }
     },
     components: {
         Item,
     },
     methods: {
         ...mapActions('goods', [
-           'requestData'
+           'requestData',
+           'onClickItem'
        ]),
+       onClick () {
+           const { title, price } = this
+           this.onClickItem({ title, price })
+       }
     },
     computed: {
         ...mapGetters('goods', [

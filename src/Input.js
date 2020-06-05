@@ -21,7 +21,5 @@ export default class Input {
             if(this._data.test(this._root.value) || this._root.value == ''){
               this._template.innerHTML = ''    
             }
-
-          }
-        
+          }        
       }

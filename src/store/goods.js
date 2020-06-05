@@ -18,10 +18,10 @@ const getters = {
 
 const actions = {
     requestData({ commit }){
-        fetch('/database/items.json')
-        /*fetch('/itemsList', {
+        //fetch('/database/items.json')
+        fetch('/itemsList', {
             method: 'GET'
-        })*/
+        })
             .then(res => res.json())
             .then(res => {
                 commit('setData', res)
@@ -40,6 +40,20 @@ const actions = {
             commit('removeFromCart', id)
         }
     },
+    onClickItem ({ commit }, data){
+        console.log(data)
+        fetch('/itemsList', {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(res => res.json())
+            .then(res => {
+                commit('setData', res)
+            })
+    }
 }
 
 const mutations = {

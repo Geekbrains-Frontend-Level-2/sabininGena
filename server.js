@@ -23,13 +23,42 @@ console.log('Server started on port: ', port)*/
 const express = require('express')
 const app = express()
 const fs = require('fs')
+const bodyParser = require("body-parser");
+
+app.use(bodyParser.json());
+//app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(express.static('./public'))
 app.listen(3000, ()=>{
   console.log('server start')
 })
 app.get('/itemsList', (req,res)=>{
+  console.log('GET')
   fs.readFile('./public/database/items.json', 'utf8', (err, data)=> {
     res.end(data)
+  })
+})
+app.post('/itemsList', (req, res) => {
+  console.log('POST')
+  fs.readFile('./public/database/items.json', 'utf8', (err, data)=> {
+    let list = JSON.parse(data || '{}')
+    console.log('list', list)
+
+    const newItem = req.body
+    console.log('item:', newItem)
+
+    const amountOfItem = Object.keys(list).length
+    const newID = amountOfItem ? list[amountOfItem - 1].id + 1 : 0
+
+    newItem.id = newID
+    console.log(amountOfItem)
+    console.log(newID)
+
+    list[newID] = newItem
+
+    fs.writeFile('./public/database/items.json', JSON.stringify(list), () => {
+      res.send(list)
+    })
+
   })
 })
