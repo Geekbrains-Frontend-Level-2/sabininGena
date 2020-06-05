@@ -57,6 +57,10 @@ const actions = {
 }
 
 const mutations = {
+    /*setDataCart (state, newData){
+        state.data = newData
+        state.itemsInCart = Object.keys(newData)
+    }, */   
     setData(state, newData){
         state.data = newData
         state.itemsOnPage = Object.keys(newData)

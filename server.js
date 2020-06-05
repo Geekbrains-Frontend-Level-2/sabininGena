@@ -62,3 +62,27 @@ app.post('/itemsList', (req, res) => {
 
   })
 })
+/*app.post('/cartList', (req, res) => {
+  console.log('POST')
+  fs.readFile('./public/database/cart.json', 'utf8', (err, data)=> {
+    let list = JSON.parse(data || '{}')
+    console.log('list', list)
+
+    const newItem = req.body
+    console.log('item:', newItem)
+
+    const amountOfItem = Object.keys(list).length
+    const newID = amountOfItem ? list[amountOfItem - 1].id + 1 : 0
+
+    newItem.id = newID
+    console.log(amountOfItem)
+    console.log(newID)
+
+    list[newID] = newItem
+
+    fs.writeFile('./public/database/items.json', JSON.stringify(list), () => {
+      res.send(list)
+    })
+
+  })
+})*/
