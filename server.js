@@ -62,7 +62,8 @@ app.post('/itemsList', (req, res) => {
 
   })
 })
-/*app.post('/cartList', (req, res) => {
+//добавил
+app.post('/cartList', (req, res) => {
   console.log('POST')
   fs.readFile('./public/database/cart.json', 'utf8', (err, data)=> {
     let list = JSON.parse(data || '{}')
@@ -80,9 +81,10 @@ app.post('/itemsList', (req, res) => {
 
     list[newID] = newItem
 
-    fs.writeFile('./public/database/items.json', JSON.stringify(list), () => {
+    fs.writeFile('./public/database/cart.json', JSON.stringify(list), () => {
       res.send(list)
     })
 
   })
-})*/
+})
+///////

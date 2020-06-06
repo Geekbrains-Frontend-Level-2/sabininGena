@@ -7,7 +7,7 @@
             <div :class="[$style.item__meta]">Товар: <span>{{ title }}</span></div>
             <div :class="[$style.item__meta]">Цена: <span>{{ price }}</span></div>
             <!--<div :class="[$style.item__meta]" @click="updateAmount(id)">Кол-во: <span>{{ amount }}</span></div>-->
-            <a  :class="[$style.buy]" @click="addToCart(id)" >Купить</a>
+            <a  :class="[$style.buy]" @click="addToCart({title,price,src})" >Купить</a>
 
   </div>
 </template>
@@ -16,6 +16,9 @@
 import { mapGetters, mapActions } from 'vuex'
 export default {
     props: {
+        title: String,
+        price: Number,
+        src: String,
         id: String,
     },
     methods: {       
