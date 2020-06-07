@@ -77,19 +77,26 @@ const mutations = {
     setDataCart (state, newData){
         const amountOfItems = Object.keys(newData).length
         const id = newData[amountOfItems - 1].id
-        console.log(id)
-        /*if(!state.cart[id].amount){
-            state.cart[id].sumItem = state.cart[id].price
-            state.cart[id].amount = 1
-            state.cart[id] = Object.assign({}, state.cart[id])
-        }*/
+        console.log(newData[id])
+        if(!newData[id].amount){
+            newData[id].sumItem = newData[id].price
+            newData[id].amount = 1
+            newData[id] = Object.assign({}, newData[id])
+        }
 
-        state.cart = newData
+        if(state.itemsInCart.indexOf(id) === -1){
+            state.itemsInCart.push(id)
+            state.counter++
+            state.totalPrice += newData[id].price
+        } 
+
+        state.cart = newData[id]
         state.itemsInCart = Object.keys(newData)
-        console.log(state.itemsInCart)
+        console.log(state.cart)
     },  
     ///// 
     setData(state, newData){
+        console.log(newData)
         state.data = newData
         state.itemsOnPage = Object.keys(newData)
     },
