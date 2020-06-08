@@ -33,7 +33,6 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
-//import Item from './Item.vue'
 import Cart from './Cart.vue'
 import CartLogo from './CartLogo.vue'
 import ListItem from './ListItem.vue'
@@ -47,14 +46,10 @@ export default {
 
     components: {
         ListItem,
-        //Item,
         CartLogo,
         Cart,
     },
     methods: {
-       /*...mapActions('goods', [
-           'requestData'
-       ]),*/
        onCartLinkClick(){
            this.page = 'cart'
        },
@@ -62,14 +57,6 @@ export default {
            this.page = 'main'
        }
     },   
-    /*computed: {
-        ...mapGetters('goods', [
-            'getItemsOnPage'
-        ])
-    },
-    mounted() {
-        this.requestData()
-    }    */
 }
 </script>
 

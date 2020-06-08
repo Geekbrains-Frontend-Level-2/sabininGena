@@ -1,6 +1,6 @@
 const state = {
     data: {},
-    cart: {},
+    Cart: {},
     itemsOnPage: [],
     itemsInCart: [],
     counter: 0,
@@ -9,7 +9,7 @@ const state = {
 }
 
 const getters = {
-    getCart: state => state.cart,
+    getCart: state => state.Cart,
     getData: state => state.data, 
     getItemsOnPage: state => state.itemsOnPage,
     getCounter: state => state.counter,
@@ -43,10 +43,19 @@ const actions = {
         })
         .then(res => res.json())
             .then(res => {
-                commit('setDataCart', res)
+                commit('addToCart', res)
             })
             /////
         //commit('addToCart', id)
+    },
+    requestDataCart({commit}){
+        fetch('/cartList', {
+            method: 'GET'
+        })
+            .then(res => res.json())
+            .then(res => {
+                commit('setDataCart', res)
+            })
     },
     removeFromCart({commit}, id){
         if(state.data[id].amount>1){
@@ -75,10 +84,16 @@ const mutations = {
     
     ////
     setDataCart (state, newData){
-        const amountOfItems = Object.keys(newData).length
+        state.Cart = newData
+        state.itemsInCart = Object.keys(newData)
+        console.log(state.itemsInCart)
+        
+        /*const amountOfItems = Object.keys(newData).length
         const id = newData[amountOfItems - 1].id
-        console.log(newData[id])
-        if(!newData[id].amount){
+        console.log(state.cart[id].id)*/
+        
+        //console.log(newData[id])
+       /* if(!newData[id].amount){
             newData[id].sumItem = newData[id].price
             newData[id].amount = 1
             newData[id] = Object.assign({}, newData[id])
@@ -88,17 +103,13 @@ const mutations = {
             state.itemsInCart.push(id)
             state.counter++
             state.totalPrice += newData[id].price
-        } 
-
-        state.cart = newData[id]
-        state.itemsInCart = Object.keys(newData)
-        console.log(state.cart)
+        } */
     },  
     ///// 
     setData(state, newData){
-        console.log(newData)
         state.data = newData
         state.itemsOnPage = Object.keys(newData)
+        console.log(state.data)
     },
     updateAmount(state, id){
         console.log(state.cart[id])
@@ -107,8 +118,13 @@ const mutations = {
         state.data[id].amount++
         state.data[id] = Object.assign({}, state.data[id])
     },
-    addToCart(state, id){
-        if(!state.data[id].amount){
+    addToCart(state, newData){
+        console.log(newData)
+        const amountOfItems = Object.keys(newData).length
+        const id = newData[amountOfItems - 1].id
+        //console.log(state.cart[id].id)
+
+        /*if(!state.data[id].amount){
             state.data[id].sumItem = state.data[id].price
             state.data[id].amount = 1
             state.data[id] = Object.assign({}, state.data[id])
@@ -117,7 +133,7 @@ const mutations = {
             state.itemsInCart.push(id)
             state.counter++
             state.totalPrice += state.data[id].price
-        }   
+        }   */
     },
     minusFromCart(state, id){
         state.totalPrice -= state.data[id].price

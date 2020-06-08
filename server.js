@@ -89,4 +89,12 @@ app.post('/cartList', (req, res) => {
 
   })
 })
+
+//получаем данные корзины при загрузке корзины
+app.get('/cartList', (req,res)=>{
+  console.log('GET')
+  fs.readFile('./public/database/cart.json', 'utf8', (err, data)=> {
+    res.end(data)
+  })
+})
 ///////

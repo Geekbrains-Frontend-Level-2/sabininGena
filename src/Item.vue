@@ -16,9 +16,6 @@
 import { mapGetters, mapActions } from 'vuex'
 export default {
     props: {
-        title: String,
-        price: Number,
-        src: String,
         id: String,
     },
     methods: {       
@@ -41,9 +38,6 @@ export default {
         },
         src(){
            return this.data.src
-        },
-        amount(){
-           return this.data.amount || 0
         },
     }
 }
