@@ -26,10 +26,12 @@ const fs = require('fs')
 const bodyParser = require("body-parser");
 
 app.use(bodyParser.json());
-//app.use(bodyParser.urlencoded({ extended: true }));
+
+const port = process.env.PORT || 3000
+
 
 app.use(express.static('./public'))
-app.listen(3000, ()=>{
+app.listen((3000 || port), ()=>{
   console.log('server start')
 })
 app.get('/itemsList', (req,res)=>{
