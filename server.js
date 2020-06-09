@@ -23,9 +23,9 @@ console.log('Server started on port: ', port)*/
 const express = require('express')
 const app = express()
 const fs = require('fs')
-const bodyParser = require("body-parser");
+const bodyParser = require("body-parser")
 
-app.use(bodyParser.json());
+app.use(bodyParser.json())
 
 const port = process.env.PORT || 3000
 
