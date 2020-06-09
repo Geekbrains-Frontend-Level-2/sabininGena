@@ -36,13 +36,13 @@ app.listen((3000 || port), ()=>{
 })
 app.get('/itemsList', (req,res)=>{
   console.log('GET')
-  fs.readFile('./public/database/items.json', 'utf8', (err, data)=> {
+  fs.readFile('./public/dataBase/items.json', 'utf8', (err, data)=> {
     res.end(data)
   })
 })
 app.post('/itemsList', (req, res) => {
   console.log('POST')
-  fs.readFile('./public/database/items.json', 'utf8', (err, data)=> {
+  fs.readFile('./public/dataBase/items.json', 'utf8', (err, data)=> {
     let list = JSON.parse(data || '{}')
     console.log('list', list)
 
@@ -58,7 +58,7 @@ app.post('/itemsList', (req, res) => {
 
     list[newID] = newItem
 
-    fs.writeFile('./public/database/items.json', JSON.stringify(list), () => {
+    fs.writeFile('./public/dataBase/items.json', JSON.stringify(list), () => {
       res.send(list)
     })
 
@@ -67,7 +67,7 @@ app.post('/itemsList', (req, res) => {
 //добавил
 app.post('/cartList', (req, res) => {
   console.log('POST')
-  fs.readFile('./public/database/cart.json', 'utf8', (err, data)=> {
+  fs.readFile('./public/dataBase/cart.json', 'utf8', (err, data)=> {
     let list = JSON.parse(data || '{}')
     console.log('list', list)
 
@@ -83,7 +83,7 @@ app.post('/cartList', (req, res) => {
     list[newID] = newItem
     console.log(list)
 
-    fs.writeFile('./public/database/cart.json', JSON.stringify(list), () => {
+    fs.writeFile('./public/dataBase/cart.json', JSON.stringify(list), () => {
       res.send(list)
     })
 
@@ -93,7 +93,7 @@ app.post('/cartList', (req, res) => {
 //получаем данные корзины при загрузке корзины
 app.get('/cartList', (req,res)=>{
   console.log('GET')
-  fs.readFile('./public/database/cart.json', 'utf8', (err, data)=> {
+  fs.readFile('./public/dataBase/cart.json', 'utf8', (err, data)=> {
     res.end(data)
   })
 })
