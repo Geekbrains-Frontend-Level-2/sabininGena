@@ -36,7 +36,7 @@ app.listen((3000 || port), ()=>{
 })
 app.get('/itemsList', (req,res)=>{
   console.log('GET')
-  fs.readFile('/public/database/items.json', 'utf8', (err, data)=> {
+  fs.readFile('./public/database/items.json', 'utf8', (err, data)=> {
     res.end(data)
   })
 })
