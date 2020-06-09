@@ -2,7 +2,7 @@
   <div>
     <h1> Корзина </h1>
       <CartItems 
-        v-for="id in getItemsInCart"
+        v-for="id in getItemsInCartID"
         :key="id"
          :id="id"
         />
@@ -34,7 +34,7 @@ export default {
     },
     computed: {
         ...mapGetters('goods', [
-            'getItemsInCart',
+            'getItemsInCartID',
             'getTotalPrice',
         ]),
     },

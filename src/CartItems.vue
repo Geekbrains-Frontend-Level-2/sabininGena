@@ -9,7 +9,7 @@
             <div :class="[$style.item__meta]">Цена: <span>{{ price }}</span></div>
 
   </div>
-  <!--<div :class="[$style.cartItem]">
+  <div :class="[$style.cartItem]">
       
       <span :class="[$style.minus]" @click="removeFromCart(id)">-</span>
       <span :class="[$style.counter]">{{ amount }}</span>
@@ -19,7 +19,7 @@
 
   <div :class="[$style.cartItem]">
       <span :class="[$style.sumItem]">{{ sumItem }}</span>
-      </div>-->
+      </div>
       </div>
   </div>
 </template>

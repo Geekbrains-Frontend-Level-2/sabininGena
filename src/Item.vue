@@ -7,7 +7,7 @@
             <div :class="[$style.item__meta]">Товар: <span>{{ title }}</span></div>
             <div :class="[$style.item__meta]">Цена: <span>{{ price }}</span></div>
             <!--<div :class="[$style.item__meta]" @click="updateAmount(id)">Кол-во: <span>{{ amount }}</span></div>-->
-            <a  :class="[$style.buy]" @click="addToCart({title,price,src})" >Купить</a>
+            <a  :class="[$style.buy]" @click="addToCart({title,price,src,id})" >Купить</a>
 
   </div>
 </template>

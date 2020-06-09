@@ -79,9 +79,9 @@ app.post('/cartList', (req, res) => {
 
     newItem.id = newID
     console.log(amountOfItem)
-    console.log(newID)
-
+    
     list[newID] = newItem
+    console.log(list)
 
     fs.writeFile('./public/database/cart.json', JSON.stringify(list), () => {
       res.send(list)
