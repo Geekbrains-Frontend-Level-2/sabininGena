@@ -65,7 +65,7 @@ app.post('/itemsList', (req, res) => {
   })
 })
 //добавил
-/*app.post('/cartList', (req, res) => {
+app.post('/cartList', (req, res) => {
   console.log('POST')
   fs.readFile('./public/dataBase/cart.json', 'utf8', (err, data)=> {
     let list = JSON.parse(data || '{}')
@@ -97,4 +97,4 @@ app.get('/cartList', (req,res)=>{
     res.end(data)
   })
 })
-///////*/
+///////
