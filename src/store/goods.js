@@ -20,14 +20,17 @@ const getters = {
 
 const actions = {
     requestData({ commit }){
-        //fetch('/database/items.json')
-        fetch('/itemsList', {
+        fetch('/database/items.json')
+        /*fetch('/itemsList', {
             method: 'GET'
         })
             .then(res => res.json())
             .then(res => {
                 commit('setData', res)
-            })
+            })*/
+            .then(res => res.json())
+            .then(res => {
+                commit('setData', res)})
     },
     updateAmount({commit}, id){
         commit('updateAmount', id)

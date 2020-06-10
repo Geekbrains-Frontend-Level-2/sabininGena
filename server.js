@@ -1,4 +1,4 @@
-/*const http = require('http')
+const http = require('http')
 const fs = require('fs')
 
 const server = http.createServer((req, res) => {
@@ -18,9 +18,9 @@ const server = http.createServer((req, res) => {
 const port = process.env.PORT || 3000
 
 server.listen(port)
-console.log('Server started on port: ', port)*/
+console.log('Server started on port: ', port)
 
-const express = require('express')
+/*const express = require('express')
 const app = express()
 const fs = require('fs')
 const bodyParser = require("body-parser");
@@ -89,4 +89,4 @@ app.post('/cartList', (req, res) => {
 
   })
 })
-///////
+///////*/
